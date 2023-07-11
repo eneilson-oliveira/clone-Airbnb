@@ -5,24 +5,24 @@ import { AiFillGithub } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
-import { toast } from "react-hot-toast";
+
 import { 
   FieldValues, 
   SubmitHandler,
   useForm
 } from "react-hook-form";
 
-import useLoginModal from "@/app/hooks/useLoginModal";
+
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 import Modal from "./Modal";
-import Input from "../inputs/Input";
+import Input from "../inputs/Inputs";
 import Heading from "../Heading";
 import Button from "../Button";
 
-const RegisterModal= () => {
+const RegisterModal = () => {
   const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { 
@@ -44,22 +44,18 @@ const RegisterModal= () => {
 
     axios.post('/api/register', data)
     .then(() => {
-      toast.success('Registered!');
+     
       registerModal.onClose();
-      loginModal.onOpen();
+      
     })
-    .catch((error) => {
-      toast.error(error);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
-  }
+  .catch((error) =>  {
+     console.log(error);
+  })
+  finally((error) => {
+    setIsLoading(false)
+  })
+  
 
-  const onToggle = useCallback(() => {
-    registerModal.onClose();
-    loginModal.onOpen();
-  }, [registerModal, loginModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">

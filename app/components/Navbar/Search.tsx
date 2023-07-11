@@ -8,7 +8,7 @@ const Search = () => {
   border-[1px]
   w-full
   md:w-auto
-  py-2
+  p-2
   rounded-full
   shadow-sm
   hover:shadow-md
